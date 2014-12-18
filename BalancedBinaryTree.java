@@ -1,31 +1,26 @@
 package leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class BalancedBinaryTree {
-	public int minDepth(TreeNode root) {
-		if (root==null) return 0;
-		else if (root.left==null && root.right==null) return 1;
-		else if (root.left==null && root.right!=null) return minDepth(root.right)+1;
-		else if (root.left!=null && root.right==null) return minDepth(root.left)+1;
-		else {
-			return Math.min(minDepth(root.left)+1, minDepth(root.right)+1);
+	public int subTreeLength(TreeNode root) {
+		if (root==null) {
+			return 0;
 		}
-    }
-	public int maxDepth(TreeNode root) {
-		if (root==null) return 0;
-		else if (root.left==null && root.right==null) return 1;
-		else if (root.left==null && root.right!=null) return maxDepth(root.right)+1;
-		else if (root.left!=null && root.right==null) return maxDepth(root.left)+1;
-		else {
-			return Math.max(maxDepth(root.left)+1, maxDepth(root.right)+1);
+		else{
+			return Math.max(subTreeLength(root.left)+1, subTreeLength(root.right)+1);
 		}
 	}
     public boolean isBalanced(TreeNode root) {
-    	int min=minDepth(root);
-    	int max=maxDepth(root);
-    	return (max-min)<=1? true:false;
+    	if (root==null) {
+			return true;
+		}
+    	else{
+			if (Math.abs(subTreeLength(root.left)-subTreeLength(root.right))>1) {
+				return false;
+			}
+			else {
+				return (isBalanced(root.left) && isBalanced(root.right));
+			}
+		}
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -57,7 +52,7 @@ public class BalancedBinaryTree {
 		t6.left=t12;
 		t6.right=t13;
 		t8.left=t14;
-		t8.right=t15;
+
 		BalancedBinaryTree tree=new BalancedBinaryTree();
 		System.out.println(tree.isBalanced(t1));
 	}

@@ -1,1 +1,0 @@
-System.out.println(Math.floor(-2.1))
