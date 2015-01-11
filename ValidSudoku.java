@@ -12,21 +12,24 @@ public class ValidSudoku {
 				}
 				else{
 					if (mini[i][j]!='.') {
-						map.put(mini[i][j], 1);
+						map.put(mini[i][j], 'Y');
 					}
 				}
-					
 			}
 		}
+		// System.out.println(map);
 		return true;
-		
 	}
 	public boolean isValidSudoku(char[][] board) {
 		for (int i = 0; i < board.length; i++) {
-			if (check(board,i,i,0,8)) return false;
-			if (check(board, 0, 8, i, i))	return false;
+			if (!check(board,i,i+1,0,9)) return false;
+			if (!check(board, 0, 9, i, i+1))	return false;
 		}
-		
+		for(int i=0;i<board.length;i+=3){
+			for(int j=0;j<board.length;j+=3){
+				if(!check(board,i,i+3,j,j+3)) return false;
+			}
+		}
 		return true;
         
     }
@@ -41,8 +44,9 @@ public class ValidSudoku {
 		}
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				System.out.println(board[i][j]);
+				System.out.print(board[i][j]);
 			}
+			System.out.println();
 		}
 		ValidSudoku vsSudoku=new ValidSudoku();
 		System.out.println(vsSudoku.isValidSudoku(board));
