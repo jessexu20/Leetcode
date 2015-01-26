@@ -21,13 +21,14 @@ public class CombinationSumII{
 	}
     public List<List<Integer>> combinationSum2(int[] num, int target) {
     	 List<List<Integer>> result=new  ArrayList<List<Integer>> ();
+		 Arrays.sort(num);
 		 findTarget(num,0,target,new  ArrayList<Integer>(),result);
 		 return result;
     }
 	public static void main(String args[]){
 		CombinationSumII cs= new CombinationSumII();
 		int []num={8,7,4,3};
-		Arrays.sort(num);
+		
 		int target=11;
 		System.out.println(cs.combinationSum2(num,target));
 	}
