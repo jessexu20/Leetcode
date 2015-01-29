@@ -38,7 +38,6 @@ public class LinkList{
 			cur=cur.next;
 			System.out.println(map);
 		}
-		traverse(l1);
 	}
 	public ListNode findKthLast(int k,ListNode head){//2.2
 		ListNode c1=head;ListNode c2=head;
