@@ -1,0 +1,7 @@
+package callservice;
+
+public class Respondent extends Employee{
+	public Respondent(){
+		rank=Rank.RESPONDENT;
+	}
+}
