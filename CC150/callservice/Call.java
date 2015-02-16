@@ -29,16 +29,21 @@ public class Call {
 	public Rank getRank() { return rank; }
 	public void setRank(Rank r) { rank = r; } 
 	public Rank incrementRank() {
-		if (rank!=Rank.DIRECTOR) {
-			return Rank.getRankfromValue(rank.getValue()+1);
+		if (rank == Rank.RESPONDENT) {
+			rank = Rank.MANAGER;
+			System.out.println("handover to manager");
+			handler.escalateAndReassign();
 		}
-		else return rank;
+		else if (rank == Rank.MANAGER) {
+			rank = Rank.DIRECTOR;
+			System.out.println("handover to director");
+			handler.escalateAndReassign();
+		}
+		return rank;
 	} 
 	public void disconnect(){
+		System.out.println(caller.name+" thank you for calling! Call ended");
 		handler.callCompleted();
-		handler=null;
-		caller=null;
-		rank=Rank.RESPONDENT;
 	}
 
 }

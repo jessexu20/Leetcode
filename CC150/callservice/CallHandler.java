@@ -40,13 +40,16 @@ public class CallHandler{
 		return instance;
 	}
 	public Employee getHandlerforCall(Call call){
-		for (int i = 0; i < NUM_RESPONDENTS; i++) {
-			if (employeeLevels.get(0).get(i).isFree()) {
-				return employeeLevels.get(0).get(i);
+		int level = call.getRank().getValue(); 
+			List<Employee>employees=employeeLevels.get(level);
+			for (Employee employee : employees) {
+				if (employee.isFree()) {
+					return employee;
+				}
 			}
-		}
 		return null;
 	}
+
 	public void dispatchCall(Caller caller){
 		Call call=new Call(caller);
 		caller.setCall(call);
@@ -67,11 +70,15 @@ public class CallHandler{
 		}
 	}
 	public boolean assignCall(Employee employee){
-		if (employee.assignNewCall()) {
-			Call oldCall=callQueues.get(employee.getRank().getValue()).get(0);
-			employee.receiveCall(oldCall);
-			return true;
+		for (int rank = employee.getRank().getValue(); rank >=0; rank--) {
+			List<Call> que=callQueues.get(rank);
+			if (que.size()>0) {
+				Call call=que.remove(0);
+				System.out.println("Thanks for waiting: "+call.getCaller().name);
+				employee.receiveCall(call);
+				return true;
+			}
 		}
-		else return false;
+		return false;
 	}
 }

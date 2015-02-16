@@ -14,8 +14,10 @@ public class Caller {
 		this.call = call;
 	}
 	public void disconnect() {
-		this.getCall().disconnect();
+		this.call.disconnect();
 	}
-
+	public void furtherRequest(){
+		this.call.incrementRank();
+	}
 	
 }

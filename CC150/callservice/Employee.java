@@ -14,22 +14,24 @@ public abstract class Employee {
 	}
 	
 	public void escalateAndReassign() {
-		if (this.getRank()==Rank.RESPONDENT) {
-			currentCall.incrementRank();
-			currentCall.setHandler(new Manager());
-		}
-		else if (this.getRank()==Rank.MANAGER) {
-			currentCall.incrementRank();
-			currentCall.setHandler(new Director());
-		}
+		CallHandler.getInstance().dispatchCall(currentCall);
+		currentCall=null;
+		assignNewCall();
 		
 	}
 	/* the issue is resolved, finish the call */ 
 	public void callCompleted(){
 		currentCall=null;
+		assignNewCall();
 	}
 	public boolean assignNewCall(){
-		return isFree();
+		if (!isFree()) {
+			return false;
+		}
+		else {
+			CallHandler.getInstance().assignCall(this);
+			return true;
+		}
 	}
 	public boolean isFree() {
 		return currentCall == null;
