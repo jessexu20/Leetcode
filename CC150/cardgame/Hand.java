@@ -1,7 +1,6 @@
 package cardgame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Hand<T extends Card> {
@@ -17,7 +16,8 @@ public class Hand<T extends Card> {
 	public void traverse() {
 		for (T card : cards) {
 			System.out.print(card.suit());
-			System.out.println(card.faceValue);
+			System.out.print(card.faceValue);
+			System.out.print('\t');
 		}
 	}
 }
