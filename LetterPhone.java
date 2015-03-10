@@ -8,10 +8,9 @@ public class LetterPhone{
 		}	
 		String choice= map.get(digits.charAt(index));
 		for(int i=0;i<choice.length();i++){
-			str+=choice.charAt(i);
 			String temp= str;
+			temp+=choice.charAt(i);
 			traverse(map,index+1,strList,temp,digitLen,digits);
-			str=str.substring(0,str.length()-1);
 		}
 	}
 	public List<String> letterCombinations(String digits) {
