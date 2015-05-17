@@ -29,7 +29,7 @@ public class RemoveList {
 				break;
 			}
 			else
-				cur=temp.next;
+				cur=temp;
 				
 		}
 		return dumpHead.next;
@@ -43,8 +43,8 @@ public class RemoveList {
 		ListNode l5=new ListNode(4);
 		ListNode l6=new ListNode(5);
 		ListNode l7=new ListNode(6);
-		l1.next=l2;l2.next=l3;l3.next=l4;
-		l4.next=l5;l5.next=l6;l6.next=l7;
+		l1.next=l2;// l2.next=l3;l3.next=l4;
+// 		l4.next=l5;l5.next=l6;l6.next=l7;
 		rl.traverse(l1);
 		System.out.println();
 		rl.traverse(rl.removeElements(l1,1));
