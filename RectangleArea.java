@@ -20,10 +20,10 @@ public class RectangleArea {
 			sy2=Math.min(D,H);
 		}
 		int size3=(sx2-sx1)*(sy2-sy1);
-		System.out.println(sx1);
-		System.out.println(sx2);
-		System.out.println(sy1);
-		System.out.println(sy2);
+		// System.out.println(sx1);
+		// System.out.println(sx2);
+		// System.out.println(sy1);
+		// System.out.println(sy2);
 		return size1+size2-size3;
 		
     }
