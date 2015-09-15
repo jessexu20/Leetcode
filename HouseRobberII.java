@@ -1,16 +1,21 @@
 public class HouseRobberII {
-    public int rob(int[] num) {
+    public int rob(int[] nums) {
+		int length=nums.length;
+		if(length==0)
+		    return 0;
+		if(length==1)
+		    return nums[0];
+        return Math.max(simple_rob(Arrays.copyOfRange(nums,0, length-1)),simple_rob(Arrays.copyOfRange(nums,1, length)));
+    }
+    public int simple_rob(int[] num) {
         int rob = 0; //max monney can get if rob current house
 	    int notrob = 0; //max money can get if not rob current house
 	    for(int i=0; i<num.length; i++) {
 	        int currob = notrob + num[i]; //if rob current value, previous house must not be robbed
 	        notrob = Math.max(notrob, rob); //if not rob ith house, take the max value of robbed (i-1)th house and not rob (i-1)th house
-	        rob = currob;
-			// System.out.print("currob "+currob);
-			// System.out.print(" notrob "+notrob);
-			// System.out.println(" rob "+rob);
+	        rob = Math.max(currob,notrob);
 	    }
-	    return Math.max(rob, notrob);
+	    return rob;
     }
 	public static void main(String args[]){
 		HouseRobberII hr=new HouseRobberII();
