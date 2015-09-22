@@ -21,7 +21,7 @@ public class HIndex {
     }
 	public static void main(String args[]){
 		HIndex hi=new HIndex();
-		int [] c ={};
+		int [] c ={0,2,3,1,4};
 		System.out.println(hi.hIndex(c));
 	}
 }
