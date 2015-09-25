@@ -39,7 +39,7 @@ public class BasicCalulatorI {
 			else {
 				if(temp!="")
 					num+=sign*Integer.valueOf(temp);
-				temp=""
+				temp="";
 			};
         }
 		if(temp!="")
