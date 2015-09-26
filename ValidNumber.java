@@ -1,74 +1,37 @@
-package Leetcode;
-
 public class ValidNumber {
-	public boolean notaNumber(char num){
-		if (num>'9' || num<'0') {
-			return true;
-		}
-		else return false;
-	}
-	public boolean specialSymbol(char symbol){
-		if (symbol=='.'||symbol=='+'||symbol=='-') {
-			return true;
-		}
-		else return false;
-	}
     public boolean isNumber(String s) {
-    	boolean pointflag=false;
-    	boolean eflag=false;
-    	s=s.trim();
-    	int len=s.length();
-    	if (len==0)
-    	    return false;
-    	char first=s.charAt(0);
-    	if (specialSymbol(first) && len==1)
-    		return false;
-    	if (notaNumber(first) && !specialSymbol(first))
-    		return false;
-    	else if (specialSymbol(first)){
-    		if (first!='.'){
-    			if (notaNumber(s.charAt(1)) && s.charAt(1)!='.')
-    				return false;
-		    	s=s.substring(1);
-		    	len=s.length();
-		   		// System.out.println(s);
-				first=s.charAt(0);
-		    	if (specialSymbol(first) && len==1)
-		    		return false;
-    		}
-    	}
-		for (int i=0;i<len;i++){
-			if (notaNumber(s.charAt(i))) {
-				if (s.charAt(i)!='e' && s.charAt(i)!='.') {
-						return false;
-				}
+		s=s.trim();//get rid of empty space before and backward.
+        boolean number=false;
+		boolean eFlag=false;
+		boolean numAfterE=false;
+		boolean dotFlag=false;
+		for(int i =0;i < s.length();i++){
+			if(s.charAt(i)<='9' && s.charAt(i)>='0'){
+				number=true;
+				numAfterE=true;
+			}// update the flags after the number
+			else if(s.charAt(i)=='e'){//eflag can only appear once, 
+				if(!number || eFlag)
+					return false;
+				eFlag=true;
+				numAfterE=false;//once e appears make the number flag false to check no number after e
 			}
-			if (pointflag && s.charAt(i)=='.') {
-				return false;
+			else if (s.charAt(i)=='.'){//dot flag can only appear once, once eflag appears, dot cannot
+				if(eFlag || dotFlag)
+					return false;
+				dotFlag=true;
+				// numAfterE=false;
 			}
-			if (s.charAt(i)=='.' ){
-				pointflag=true;
-				if (i+1<len && s.charAt(i+1)=='.')
+			else if(s.charAt(i)=='+' || s.charAt(i)=='-'){//+ - can only appear after e flag or at the begining.
+				if(i!=0 && s.charAt(i-1)!='e')
 					return false;
 			}
-			if (eflag && s.charAt(i)=='e') {
-				
-				return false;
-			}
-			if (s.charAt(i)=='e'){
-				eflag=true;
-				if (i+1>=len) {
-					return false;
-				}
-				if (notaNumber(s.charAt(i+1)))
-					return false;
-			}	
+			else return false;			
 		}
-		return true;
+		return number && numAfterE;//check number.
     }
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ValidNumber validNumber=new ValidNumber();
-		System.out.println(validNumber.isNumber("46.e3"));	
+	public static void main(String args[]){
+		ValidNumber vn= new ValidNumber();
+		System.out.println(vn.isNumber("1.2"));
 	}
 }
