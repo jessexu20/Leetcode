@@ -1,34 +1,31 @@
 package leetcode;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Set;
-
+import java.util.*;
 public class LongestSubstring {
-    public int lengthOfLongestSubstring(String s) {
-    	HashMap hashMap=new HashMap();
-    	int count=0;
-    	int max=0;
-    	for (int i = 0; i < s.length(); i++) {
-    		for (int j = i; j < s.length(); j++) {
-    			if (hashMap.containsKey(s.charAt(j))==false) {
-    				hashMap.put(s.charAt(j), 1);
-    				count++;
-//    				System.out.print(s.charAt(j)+"\t");
-//    				System.out.println(count);
-    			}
-    			else {
-    				hashMap.clear();
-    				hashMap.put(s.charAt(j), 1);
-    				count=1;
-    			}
-    			if (count>max)  max=count;
-			}
-    		hashMap.clear();
-    		count=0;
-		}
-		return max;
-    }
+    // public int lengthOfLongestSubstring(String s) {
+//     	HashMap hashMap=new HashMap();
+//     	int count=0;
+//     	int max=0;
+//     	for (int i = 0; i < s.length(); i++) {
+//     		for (int j = i; j < s.length(); j++) {
+//     			if (hashMap.containsKey(s.charAt(j))==false) {
+//     				hashMap.put(s.charAt(j), 1);
+//     				count++;
+// //    				System.out.print(s.charAt(j)+"\t");
+// //    				System.out.println(count);
+//     			}
+//     			else {
+//     				hashMap.clear();
+//     				hashMap.put(s.charAt(j), 1);
+//     				count=1;
+//     			}
+//     			if (count>max)  max=count;
+// 			}
+//     		hashMap.clear();
+//     		count=0;
+// 		}
+// 		return max;
+//     }
     public int lengthDP(String s){
     	HashMap map=new HashMap();
     	int count=0;
@@ -61,6 +58,26 @@ public class LongestSubstring {
 		}
 //    	System.out.println(map);
 		return max;
+    }
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character>chars=new HashSet();
+        int length=0;
+        int max=0;
+        int i=0,j=0;
+        while(i<s.length()&&j<s.length()){
+            if(chars.add(s.charAt(j++))){
+                length=j-i;
+                if(max<=length) max=length;
+            }
+            else{
+                while(s.charAt(i)!=s.charAt(j-1)){
+                    chars.remove(s.charAt(i));
+                    i++;
+                }
+                i++;
+            }
+        }
+        return max;
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
