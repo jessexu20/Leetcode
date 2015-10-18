@@ -12,6 +12,7 @@ public class Permutations{
 					current.add(temp);
 					l.remove(j);
 				}
+				System.out.println(current);
 			}
 			result = new ArrayList<List<Integer>>(current);
 		}

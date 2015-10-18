@@ -52,19 +52,19 @@ public class RecoverTree {
 		while(cur!=null){
 			if(cur.left==null){
 				System.out.println(cur.val);
-				cur=cur.right;
+				cur=cur.right;//left is empty, after print itself, move to the right
 			}
-			else{
-				temp=cur.left;
-				while(temp.right!=null&& temp.right!=cur)
+			else{//left is not empty
+				temp=cur.left;//go the left child
+				while(temp.right!=null&& temp.right!=cur)//move the rightmost node, make sure that the node is not its parent
 					temp=temp.right;
-				if(temp.right!=null ){
+				if(temp.right!=null ){//the rightmost node is its parent
 					temp.right=null;
 					System.out.println(cur.val);
-					cur = cur.right;
+					cur = cur.right;//go the parent's right son
 				}else{
-					temp.right=cur;
-					cur=cur.left;
+					temp.right=cur;//make a link to the parent
+					cur=cur.left;//go to the left child
 				}
 			}
 		}

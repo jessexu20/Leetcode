@@ -1,46 +1,33 @@
 import java.util.*;
 public class NqueenII {
-	int count =0;
+    int count=0;
     public int totalNQueens(int n) {
-       	int [] temp= new int[n];
-		for(int i=0;i<n;i++)
-			temp[i]=-1;
-		for(int i=0;i<n;i++){
-			step(temp,i);
-		}
-		return count;
+        int [] arr= new int [n];//store the location of queen into the array..
+        Arrays.fill(arr,-1);
+        generate(arr,n,0);
+        return count;
     }
-	public void step(int [] array,int i){
-		if(i==array.length){
-			for(int pos: array){
-				if(pos==-1)
-					return;
-			}
-			count++;
-			return;
-		}	
-		for(int k=0;k<array.length;k++){
-			if(check(array,i,k)){
-				int [] temparray=array.clone();
-				temparray[i]=k;
-				step(temparray,i+1);
-			}
-		}
-	}
-	public boolean check(int [] array,int i,int j ){
-		if(array[i]!=-1)
-			return false;
-		for(int k=0;k<array.length;k++){
-			if(k==i)
-				continue;
-			if(array[k]==j)
-				return false;
-			if(array[k]!=-1 && Math.abs(array[k]-j)==Math.abs(k-i))
-				return false;
-		}
-		return true;
-		
-	}
+    public void generate(int [] arr,int n,int cur){
+        if(cur==arr.length){
+            if(arr[arr.length-1]!=-1)
+                count++;
+            return;
+        }
+        for(int i=0;i<n;i++){
+            if(valid(arr,cur,i)){
+                arr[cur]=i;
+                generate(arr,n,cur+1);//get to next level
+            }
+            arr[cur]=-1;//remove current influence.
+        }
+    }
+    public boolean valid(int [] arr, int index,int value){
+        for(int i=0;i<index;i++){
+            int d=value-arr[i];
+            if(Math.abs(d)==0 || Math.abs(d)==Math.abs(index-i)) return false;
+        }
+        return true;
+    }
 	public static void main(String args[]){
 		NqueenII nq=new NqueenII();
 		System.out.println(nq.totalNQueens(4));

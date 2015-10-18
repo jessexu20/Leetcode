@@ -17,7 +17,35 @@ public class IntegertoRoman{
 		num=num % 10;
 		str+=lookupten[num];
 		return str;
+		
 	}
+    public String intToRoman(int num) {
+        String [] sample= {"","I","II","III","IV","V","VI","VII","VIII","IX","X"};
+        int step=0;
+        String str="";
+        while(num>0){
+            String temp= sample[num%10];
+            switch (step){
+                case 1: 
+                    temp=temp.replace('X','C');
+                    temp=temp.replace('V','L');
+                    temp=temp.replace('I','X');
+                    break;
+                case 2: 
+                    temp=temp.replace('X','M');
+                    temp=temp.replace('V','D');
+                    temp=temp.replace('I','C');
+                    break;
+                case 3:
+                    temp=temp.replace('I','M');
+                    break;
+            }
+            str=temp+str;
+            step++;
+            num/=10;
+        }
+        return str;
+    }
 	public static void main(String args[]){
 		IntegertoRoman intRo=new IntegertoRoman();
 		System.out.println(intRo.intToRoman(59));
