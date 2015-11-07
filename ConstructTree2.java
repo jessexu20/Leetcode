@@ -1,3 +1,4 @@
+import java.util.*;
 class TreeNode {
 	int val;
 	TreeNode left;
@@ -8,8 +9,6 @@ class TreeNode {
 	}
 }
 public class ConstructTree2 {
-	int pOrder;
-	int iOrder;
 	public void preOrder(TreeNode root) {
 		if (root == null)
 			return;
@@ -27,37 +26,38 @@ public class ConstructTree2 {
 		inOrder(root.right);
 
 	}
-	public TreeNode build(int[]preorder,int []inorder,TreeNode start){
-		if (pOrder>=preorder.length) {
-			return null;
+	public TreeNode constructTree(int [] preorder, int [] inorder){
+		Stack <TreeNode> stack = new Stack();
+		if(preorder.length<1) return null;
+		int i = 0,j = 0;
+		TreeNode root = new TreeNode (preorder[i++]);
+		stack.push(root);
+		TreeNode pre = null;
+		while(j<inorder.length){//end of left tree
+			if(!stack.isEmpty() && stack.peek().val== inorder[j]){
+				pre = stack.pop();
+				j++;
+			}
+			else if(pre!=null){//right child
+				TreeNode t = new TreeNode(preorder[i++]);
+				pre.right= t;
+				stack.push(t);
+				pre=null;
+			}
+			else{//left child
+				TreeNode t = new TreeNode(preorder[i++]);
+				stack.peek().left= t;
+				stack.push(t);
+			}
 		}
-		TreeNode node=new TreeNode(preorder[pOrder++]);
-		//left tree
-		if (inorder[iOrder]!=node.val) {
-			node.left=build(preorder, inorder, node);
-		}
-		iOrder++;
-		
-		if((start==null)||(inorder[iOrder]!=start.val)){
-			node.right=build(preorder, inorder, start);
-		}
-		
-		return node;
+		return root;
 	}
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        pOrder=0;
-        iOrder=0;
-        if (preorder.length<=0) {
-			return null;
-		}
-        return build(preorder, inorder, null);
-    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ConstructTree2 ct2=new ConstructTree2();
 		int[] preorder = { 5, 3, 2, 1,6,7 };
 		int[] inorder = {2,3,1,5,7,6 };
-		TreeNode root=ct2.buildTree(preorder, inorder);
+		TreeNode root=ct2.constructTree(preorder, inorder);
 		ct2.preOrder(root);
 		System.out.println();
 		ct2.inOrder(root);

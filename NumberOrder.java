@@ -7,9 +7,11 @@ public class NumberOrder {
 		for(int i = 0;i<str.length();i++){
 			count+=(str.charAt(i)=='i')?0:1;
 		}
-		String result = "1";//the first has not been used..
+		String result = "";
 		int increase= count+2;
 		int decrease= count+1;
+		if(str.startsWith("i")) result+=1;//the first item..
+		else result+=(decrease--);
 		for(int i =0 ;i<str.length();i++){
 			if(str.charAt(i)=='i') result+=String.valueOf(increase++);
 			else result+=String.valueOf(decrease--);
@@ -24,6 +26,6 @@ public class NumberOrder {
 	public static void main(String args[]){
 		NumberOrder no= new NumberOrder();
 		
-		System.out.println(no.generate("idididid"));
+		System.out.println(no.generate("diddiiii"));
 	}
 }

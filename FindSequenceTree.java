@@ -25,11 +25,11 @@ public class FindSequenceTree {
 		if(root.left==null && root.right==null) return;
 		if(root.right!=null){
 			if(root.right.val==root.val+1) helper(root.right,result);
-			helper(root.right,"");
+			else helper(root.right,"");
 		} 
 		if(root.left!=null){
 			if(root.left.val==root.val+1) helper(root.left,result);
-			helper(root.left,"");
+			else helper(root.left,"");
 		} 
 	}
 	public static void main(String args[]) {

@@ -1,3 +1,4 @@
+import java.util.*;
 class TreeNode {
 	int val;
 	TreeNode left;
@@ -25,42 +26,39 @@ public class ConstructTree {
 		inOrder(root.right);
 
 	}
-
-	int pInorder; // index of inorder array
-	int pPostorder; // index of postorder array
-	private TreeNode buildTree(int[] inorder, int[] postorder, TreeNode end) {
-		if (pPostorder < 0) {
-			return null;
+	public TreeNode constructTree(int [] postorder , int [] inorder){
+		Stack<TreeNode> stack = new Stack();
+		int i = postorder.length-1, j = inorder.length-1;
+		if(postorder.length<1) return null;
+		TreeNode root = new TreeNode(postorder[i--]);
+		stack.push(root);
+		TreeNode pre=null;
+		while(j>=0 && i >= 0){
+			if(!stack.isEmpty() && stack.peek().val==inorder[j]){
+				pre = stack.pop();
+				j--;
+			}
+			else if (pre!=null){
+				TreeNode t = new TreeNode(postorder[i--]);
+				pre.left=t;
+				pre =null;
+				stack.push(t);
+			}
+			else{
+				TreeNode t = new TreeNode(postorder[i--]);
+				stack.peek().right= t;
+				stack.push(t);
+			}
 		}
-
-		// create root node
-		TreeNode n = new TreeNode(postorder[pPostorder--]);
-
-		// if right node exist, create right subtree
-		if (inorder[pInorder] != n.val) {
-			n.right = buildTree(inorder, postorder, n);
-		}
-
-		pInorder--;
-
-		// if left node exist, create left subtree
-		if ((end == null) || (inorder[pInorder] != end.val)) {
-			n.left = buildTree(inorder, postorder, end);
-		}
-
-		return n;
+		return root;
 	}
-	public TreeNode buildTree(int[] inorder, int[] postorder) {
-		pInorder = inorder.length - 1;
-		pPostorder = postorder.length - 1;
 
-		return buildTree(inorder, postorder, null);
-	}
+
 	public static void main(String args[]) {
 		ConstructTree cons = new ConstructTree();
-		int[] inorder = { -4, -10, 3, -1, 7, 11, -8, 2 };
-		int[] postorder = { -4, -1, 3, -10, 11, -8, 2, 7 };
-		TreeNode tree = cons.buildTree(inorder, postorder);
+		int[] inorder = { 4, 2, 8, 5, 9, 1, 6, 3 ,7 };
+		int[] postorder = { 4, 8, 9, 5, 2, 6, 7, 3 ,1};
+		TreeNode tree = cons.constructTree(inorder, postorder);
 		cons.inOrder(tree);
 		System.out.println();
 		cons.postOrder(tree);
