@@ -39,14 +39,14 @@ public class ConstructTree2 {
 				j++;
 			}
 			else if(pre!=null){//right child
-				TreeNode t = new TreeNode(preorder[i++]);
-				pre.right= t;
-				stack.push(t);
+				TreeNode r = new TreeNode(preorder[i++]);
+				pre.right= r;
+				stack.push(r);
 				pre=null;
 			}
 			else{//left child
-				TreeNode t = new TreeNode(preorder[i++]);
-				stack.peek().left= t;
+				TreeNode l = new TreeNode(preorder[i++]);
+				stack.peek().left= l;
 				stack.push(t);
 			}
 		}
