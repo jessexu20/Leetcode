@@ -91,16 +91,16 @@ public class CompressImage {
 
 	public static void main(String args[]) {
 		CompressImage compress = new CompressImage();
-		int[][] image1 = { { 0, 0, 1, 1 }, { 1, 0, 1, 1 }, { 0, 0, 0, 0 },
-				{ 1, 1, 1, 0 } };
+		int[][] image1 = { { 0, 0, 1, 1 ,1 }, { 1, 0, 1, 1,1 }, { 0, 0, 0, 0,1 },
+				{ 1, 1, 1, 0,1 },{1,1,1,1,1} };
 		int[][] image2 = { { 0, 0, 0, 0 }, { 0, 0, 1, 1 }, { 0, 1, 1, 0 },
 				{ 0, 0, 0, 0 } };
 		TreeNode4 root1 = compress.compress(image1);
-		TreeNode4 root2 = compress.compress(image2);
+		// TreeNode4 root2 = compress.compress(image2);
 		System.out.println(compress.levelOrder(root1));
-		System.out.println(compress.levelOrder(root2));
-		compress.mergeTree(root1,root2);
-		System.out.println(compress.levelOrder(root1));
+		// System.out.println(compress.levelOrder(root2));
+		// compress.mergeTree(root1,root2);
+		// System.out.println(compress.levelOrder(root1));
 		
 	}
 }
