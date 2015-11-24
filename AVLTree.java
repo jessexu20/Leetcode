@@ -1,11 +1,4 @@
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x){
-		val = x;
-	}
-}
+package google;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,6 +14,25 @@ public class AVLTree {
 
 	public void delete(int num) {
 		r = delete(r, num);
+	}
+
+	private TreeNode checkBalance(TreeNode root) {
+		// check balance function
+		int diff = subTreeHeight(root.left) - subTreeHeight(root.right);
+		if (diff == 2) {
+			if (subTreeHeight(root.left.left) >= subTreeHeight(root.left.right))
+				root = rightRotate(root);
+			else
+				root = leftRightRotate(root);
+		} else if (diff == -2) {
+			if (subTreeHeight(root.right.left) <= subTreeHeight(root.right.right))
+				// only when subsub left tree is longer than subsub right, do
+				// right left
+				root = leftRotate(root);
+			else
+				root = rightLeftRotate(root);
+		}
+		return root;
 	}
 
 	private TreeNode delete(TreeNode root, int num) {
@@ -50,27 +62,10 @@ public class AVLTree {
 
 		} else if (num > root.val) {
 			root.right = delete(root.right, num);// delete node in right tree
-			if (subTreeHeight(root.left) - subTreeHeight(root.right) == 2) {
-				// check left subtree to see conditions.
-				if (subTreeHeight(root.left.left) > subTreeHeight(root.left.right)) {
-					// left left
-					root = rightRotate(root);
-				}
-				// left right
-				else
-					root = leftRightRotate(root);
-			}
+			root = checkBalance(root);
 		} else {
 			root.left = delete(root.left, num);// delete node in left tree
-			if (subTreeHeight(root.right) - subTreeHeight(root.left) == 2) {
-				if (subTreeHeight(root.right.left) < subTreeHeight(root.right.right))
-					// right right
-					root = leftRotate(root);
-				// right left
-				else
-					root = rightLeftRotate(root);
-
-			}
+			root = checkBalance(root);
 		}
 		return root;
 	}
@@ -86,22 +81,10 @@ public class AVLTree {
 		}
 		if (num > root.val) {
 			root.right = insert(root.right, num);
-			if (subTreeHeight(root.right) - subTreeHeight(root.left) == 2) {
-				// inserted in the right tree, therefore right subtree may be
-				// longer than the left tree
-				if (num > root.right.val) {
-					root = leftRotate(root);
-				} else
-					root = rightLeftRotate(root);
-			}
+			root = checkBalance(root);
 		} else {
 			root.left = insert(root.left, num);
-			if (subTreeHeight(root.left) - subTreeHeight(root.right) == 2) {
-				if (num < root.left.val) {
-					root = rightRotate(root);
-				} else
-					root = leftRightRotate(root);
-			}
+			root = checkBalance(root);
 		}
 		return root;
 
@@ -114,9 +97,6 @@ public class AVLTree {
 				.max(subTreeHeight(root.left), subTreeHeight(root.right));
 	}
 
-	/*
-	 * x x \ / \ x => x x \ x
-	 */
 	private TreeNode leftRotate(TreeNode root) {
 		TreeNode temp = root.right;
 		root.right = temp.left;
@@ -124,9 +104,6 @@ public class AVLTree {
 		return temp;
 	}
 
-	/*
-	 * x x / / \ x => x x / x
-	 */
 	private TreeNode rightRotate(TreeNode root) {
 		TreeNode temp = root.left;
 		root.left = temp.right;
@@ -178,6 +155,7 @@ public class AVLTree {
 		avlTree.insert(6);
 		avlTree.insert(8);
 		avlTree.insert(9);
+		System.out.println(avlTree.levelOrder());
 		avlTree.delete(5);
 		System.out.println(avlTree.levelOrder());
 		avlTree.delete(9);

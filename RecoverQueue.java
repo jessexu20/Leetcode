@@ -39,11 +39,11 @@ public class RecoverQueue{
 	public static void main(String args[]){
 		RecoverQueue rq = new RecoverQueue();
 		List <People> list = new ArrayList<People>();
-		list.add(new People("a",4,0));
-		list.add(new People("b",1,1));
-		list.add(new People("c",6,0));
-		list.add(new People("d",2,2));
-		list.add(new People("e",5,1));
+		list.add(new People("a",5,0));
+		list.add(new People("b",4,0));
+		list.add(new People("c",3,1));
+		list.add(new People("d",2,3));
+		list.add(new People("e",1,4));
 		List<People> result = new ArrayList<People>(rq.recover(list));
 		for(People p : result){
 			System.out.print(p.name+"\t");
