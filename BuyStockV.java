@@ -9,7 +9,7 @@ public class BuyStockV{
 		int profit = 0;
 		for(int i = 1;i < length; i++){
 			if(i > 1) hold_cur = Math.max(hold_day1,unhold_day2 - prices[i]);
-			else hold_cur = hold_day1;
+			else hold_cur = Math.max(0-prices[i],hold_day1);
 			if(i > 1) unhold_cur = Math.max(unhold_day1, hold_day1 + prices[i]);
 			else unhold_cur = Math.max(unhold_day1, hold_day1+prices[i]);
 			profit = Math.max(unhold_cur,profit);
@@ -22,7 +22,7 @@ public class BuyStockV{
 	}
 	public static void main(String args[]){
 		BuyStockV bs = new BuyStockV();
-		int [] nums = {2,3,1,4,5,1,6};
+		int [] nums = {2,1,4};
 		System.out.println(bs.buy(nums));
 	}
 }
