@@ -5,29 +5,31 @@ public class SubSetDistance{
 		List<Integer> list = new ArrayList<>();
 		int [][] dp = new int [k][nums.length];
 		for(int i = 0; i < k; i++){
-			Arrays.fill(dp[i],Integer.MAX_VALUE);
+			Arrays.fill(dp[i],Integer.MAX_VALUE);//init first row with INT_INF, since one number subset distance is infinity
 		}
 		for(int sep = 1; sep<k; sep++){
-			dp[sep][0] = 1;
-			for(int i = 1; i < nums.length; i++){
-				int temp = 0;
+			for(int i = 0; i < sep; i++){
+				dp[sep][i] = 1;//init first one..not enough item... make it to be one.
+			}
+			for(int i = sep; i < nums.length; i++){
+				int temp = 0;//temp is the current level max distance. dp[sep-1][j] means #(sep-1) with [0...j] subset. nums[i]-nums[j] is the sep distance
 				for(int j = 0; j < i; j++){
-					temp =Math.max(temp,Math.min(dp[sep-1][j],nums[i]-nums[j]));
+					temp = Math.max(temp,Math.min(dp[sep-1][j],nums[i]-nums[j]));//the current level =  min of each two and the max of the all the combination.
 				}
-				dp[sep][i] = Math.min(temp,dp[sep-1][i-1]);
+				dp[sep][i] = temp;
 			}
 		}
-		int min = dp[k-1][nums.length-1];
+		int min = dp[k-1][nums.length-1];//the max shortest distance
 		if(k>0) list.add(nums[0]);
 		while(k>1){
-			int index = bsBig(nums,list.get(list.size()-1)+min);
+			int index = bsBig(nums,list.get(list.size()-1)+min);//binary search for the current number.
 			list.add(nums[index]);
 			k--;
 		}
 		System.out.println(list);
 		return min;
 	}
-	private int bsBig(int [] nums, int target){
+	private int bsBig(int [] nums, int target){//binary search for the next bigger number.
 		int start = 0; int end = nums.length-1;
 		while(start <= end){
 			int mid = start + (end - start)/2;
