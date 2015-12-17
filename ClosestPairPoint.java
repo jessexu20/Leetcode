@@ -58,9 +58,6 @@ public class ClosestPairPoint {
 	private int cal(Point a, Point b) {
 		return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);// Manhattan Distance
 	}
-	public double calTriSize(Point a, Point b, Point c){
-		return ((double)(a.x - c.x) * (b.y - c.y) - (double)(a.y - c.y) * (b.x - c.x))/2;
-	}
 	public static void main(String args[]) {
 		ClosestPairPoint cpp = new ClosestPairPoint();
 		Point p1 = new Point(1, 0);

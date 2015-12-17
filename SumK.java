@@ -25,6 +25,6 @@ public class SumK{
 	public static void main(String args[]){
 		SumK sumk = new SumK();
 		int [] nums ={1,2,3,1,2,1,4,9};
-		System.out.println(sumk.sum(nums,2));
+		System.out.println(sumk.sum(nums,6));
 	}
 }

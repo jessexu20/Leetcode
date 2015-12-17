@@ -1,5 +1,6 @@
 import java.util.*;
 public class DiffParentheses {
+	HashMap<String, List<Integer>> cache = new HashMap();
     public List<Integer> diffWaysToCompute(String input) {
         List <Integer>result= new ArrayList<Integer>();
 		for(int i=0;i<input.length();i++){
@@ -26,11 +27,13 @@ public class DiffParentheses {
 		if(result.size()==0){
 			result.add(Integer.valueOf(input));
 		}
+		cache.put(input,result);
 		return result;
     }
 	public static void main(String args[]){
 		DiffParentheses dp= new DiffParentheses();
 		String str="2*3-4*5";
 		System.out.println(dp.diffWaysToCompute(str));
+		System.out.println(dp.cache);
 	}
 }

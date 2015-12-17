@@ -74,7 +74,7 @@ public class PalindromePermutation {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PalindromePermutation permutation = new PalindromePermutation();
-		System.out.println(permutation.generatePalindromes("acc"));
+		System.out.println(permutation.generatePalindromes("accbb"));
 	}
 
 }

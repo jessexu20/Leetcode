@@ -43,6 +43,6 @@ public class OrderString{
 	}
 	public static void main(String args[]){
 		OrderString os = new OrderString();
-		System.out.println(os.build("BACCBBAAA"));
+		System.out.println(os.build("aaaaabbbccd"));//abacabacbad
 	}
 }
