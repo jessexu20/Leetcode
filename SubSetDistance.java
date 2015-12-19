@@ -41,7 +41,7 @@ public class SubSetDistance{
 	}
 	public static void main(String args[]){
 		SubSetDistance ssd = new SubSetDistance();
-		int [] nums = {1,2,6,7,9,10,12};
-		System.out.println(ssd.maxDistance(nums,4));
+		int [] nums = {1,2,6,4,9,10,12};
+		System.out.println(ssd.maxDistance(nums,5));
 	}
 }
