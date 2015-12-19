@@ -37,11 +37,12 @@ public class FormatWords{
 			i++;
 			j=0;
 		}
+		if(que.peek()==-1) counter++;
 		System.out.println(sb.toString());
 		return counter;
 	}
 	public static void main(String args[]){
 		FormatWords fw = new FormatWords();
-		System.out.println(fw.canPlace("abc cd e xyz",10,5));
+		System.out.println(fw.canPlace("abc cd e xyz",12,5));
 	}
 }
