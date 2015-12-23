@@ -13,12 +13,12 @@ public class WordAbbr {
 		for (int i = index; i < length; i++) {
 			String left = string.substring(0, i);
 			String right = string.substring(i + 1);
-			String t = left + "*" + right;
+			String t = left + "*" + right;//turn string abc into *bc and all the possibility
 			list.add(handle(t));
 			helper(list, t, i+1, t.length());
 		}
 	}
-	public String handle(String str){
+	public String handle(String str){//handle *b* to 1b1.. count the apperance of *
 		int len = 0;
 		StringBuilder sb = new StringBuilder();
 		int start =0;
