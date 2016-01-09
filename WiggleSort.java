@@ -9,9 +9,9 @@ For example, given nums = [3, 5, 2, 1, 6, 4], one possible answer is [1, 6, 2, 5
 public class WiggleSort {
     public void wiggleSort(int[] nums) {
         for(int i =1 ; i < nums.length;i++){
-            if(i %2 !=0 && nums[i]<nums[i-1])
+            if(i %2 !=0 && nums[i]<=nums[i-1])
                 swap(nums,i,i-1);
-            if(i%2 ==0 && nums[i]>nums[i-1]){
+            if(i%2 ==0 && nums[i]>=nums[i-1]){
                 swap(nums,i,i-1);
             }
         }
@@ -23,7 +23,7 @@ public class WiggleSort {
     }
 	public static void main(String args[]){
 		WiggleSort ws= new WiggleSort();
-		int []nums={7,6,3,4,5,2,1};
+		int []nums={1,2,1,2,1,2,1,1,1,2,2,2};
 		ws.wiggleSort(nums);
 		for(int i =0;i<nums.length;i++)System.out.print(nums[i]+"\t");
 	}

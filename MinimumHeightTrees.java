@@ -6,24 +6,19 @@ public class MinimumHeightTrees {
 	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 		int[] degree = new int[n];
 		HashMap<Integer, List<Integer>> adjList = new HashMap<>();
+		// using set to store the vertices
+		for(int i = 0; i < n; i++){
+			adjList.put(i,new ArrayList<Integer>());
+		}
+			
 		// form adjancy list
 		for (int[] edge : edges) {
 			degree[edge[0]]++;
 			degree[edge[1]]++;
-			if (!adjList.containsKey(edge[0])) {
-				adjList.put(edge[0], new ArrayList<Integer>());
-			}
-			if (!adjList.containsKey(edge[1])) {
-				adjList.put(edge[1], new ArrayList<Integer>());
-			}
 			adjList.get(edge[0]).add(edge[1]);
 			adjList.get(edge[1]).add(edge[0]);
 		}
-		// using set to store the vertices
-		Set<Integer> set = new HashSet<>();
-		for (int i = 0; i < n; i++) {
-			set.add(i);
-		}
+		
 		// store all the leaf nodes in the list
 		List<Integer> list = new ArrayList<>();
 		for (int i = 0; i < degree.length; i++) {
@@ -32,7 +27,7 @@ public class MinimumHeightTrees {
 			}
 		}
 		// remove until only two root left, each time remove all the leave nodes.
-		while (set.size() > 2) {
+		while (adjList.size() > 2) {
 			List<Integer> level = new ArrayList<>();
 			for (int i : list) {
 				for (int j : adjList.get(i)) {
@@ -43,11 +38,11 @@ public class MinimumHeightTrees {
 					}
 				}
 				// remove leaf nodes in the set
-				set.remove(i);
+				adjList.remove(i);
 			}
 			list = new ArrayList<>(level);
 		}
-		return new ArrayList<>(set);
+		return new ArrayList<>(adjList.keySet());
 	}
 
 	public static void main(String[] args) {

@@ -11,9 +11,21 @@ public class RandomGen{
 		}
 		return number;
 	}
+	public int rand7(){
+		int number = -1;
+		while(number < 0 || number > 6){
+			number  = 6 * rand6() + rand6();
+		}
+		return number;
+	}
 	public static void main(String args[]){
 		RandomGen r = new RandomGen();
-		for(int i = 0; i < 100;i++)
-			System.out.println(r.rand6());
+		int [] cnt = new int[6];
+		for(int i = 0; i < 10000;i++)
+			cnt[r.rand2()]++;
+			// System.out.println(r.rand7());
+		for(int i = 0; i < 6; i++){
+			System.out.print(cnt[i]+"\t");
+		}
 	}
 }
