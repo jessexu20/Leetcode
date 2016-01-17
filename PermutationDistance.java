@@ -40,6 +40,6 @@ public class PermutationDistance{
 	public static void main(String args[]){
 		PermutationDistance pd = new PermutationDistance();
 		int [] nums = {1,1,2,3,4,5,6};
-		System.out.println(pd.permutation(nums,2));
+		System.out.println(pd.permutation(nums,3));
 	}
 }

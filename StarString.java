@@ -7,6 +7,7 @@ public class StarString{
 		helper2(list,str,"",0);
 		System.out.println(list);
 	}
+	//print the string
 	public void helper(StringBuilder str, int index){
 		for(int i = index;i<str.length();i++){
 			if(str.charAt(i)=='*'){
@@ -20,6 +21,7 @@ public class StarString{
 		if(str.indexOf("*")==-1)
 			System.out.println(str);
 	}
+	//store the string
 	public void helper2(List<String> result, String str,String temp, int index){
 		if(temp.length()== str.length()){
 			result.add(temp);

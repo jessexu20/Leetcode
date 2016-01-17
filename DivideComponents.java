@@ -49,7 +49,7 @@ public class DivideComponents{
 		d3.next = d4; d4.prev = d3;
 		d4.next = d5; d5.prev = d4;
 		List<DoubleLinkedNode> list = new ArrayList();
-		list.add(d1);list.add(d4);list.add(d3);list.add(d2);
+		list.add(d1);list.add(d5);list.add(d4);
 		System.out.println(dc.decide(list));
 	}
 }

@@ -21,13 +21,9 @@ public class MeetingRoom {
        	Comparator<Interval> comparator=new Comparator<Interval>() {
 			@Override
 			public int compare(Interval o1, Interval o2) {
-				if(o1.start==o2.start){
-				    if(o1.end==o2.end) return 0;
-				    else if(o1.end<o2.end) return -1;
-				    else return 1;
-				}
-				else if(o1.start<o2.start) return -1;
-				else return 1;
+				if(o1.start==o2.start)
+					return o1.end - o2.end;
+				else return o1.start - o2.start;
 			}
 		}; 
 		Arrays.sort(intervals,comparator);
