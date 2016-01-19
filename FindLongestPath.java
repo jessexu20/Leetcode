@@ -1,4 +1,5 @@
 public class FindLongestPath{
+	//longest increasing subarray in 2D array
 	int max = Integer.MIN_VALUE;
 	int [][] distance;
 	public int findPath(int [][] matrix){
@@ -24,7 +25,7 @@ public class FindLongestPath{
 			if(distance[i+1][j]!=0) d = distance[i+1][j];
 			else{
 				helper(matrix,i+1,j);
-				u = distance[i+1][j];
+				d = distance[i+1][j];
 			}
 		}
 		if(j>0 && matrix[i][j-1]==matrix[i][j]+1){
@@ -46,7 +47,7 @@ public class FindLongestPath{
 	}
 	public static void main(String args[]){
 		FindLongestPath fp = new FindLongestPath();
-		int [][] matrix = {{7,8,6},{9,4,5},{2,3,1}};
+		int [][] matrix = {{7,5,6},{9,4,5},{2,3,1}};
 		System.out.println(fp.findPath(matrix));
 	}
 }
