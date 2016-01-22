@@ -29,7 +29,7 @@ public class PermutationSequence {
 	}
 	public static void main(String[] args) {
 		PermutationSequence permutation=new PermutationSequence();
-		String string=permutation.getPermutation(2,1);
+		String string=permutation.getPermutation(4,10);
 		System.out.println(string);
 	}
 
