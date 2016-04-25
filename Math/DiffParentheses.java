@@ -34,6 +34,6 @@ public class DiffParentheses {
 		DiffParentheses dp= new DiffParentheses();
 		String str="2*3-4*5";
 		System.out.println(dp.diffWaysToCompute(str));
-		System.out.println(dp.cache);
+		// System.out.println(dp.cache);
 	}
 }

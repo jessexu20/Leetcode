@@ -5,12 +5,16 @@ public class BuyStock{
 
         int[][] t = new int[k + 1][len];
         for (int i = 1; i <= k; i++) {
-            int tmpMax = t[i - 1][0] - prices[0];
-			// System.out.println("i="+i+'\t'+tmpMax);
+			//hold is means buy stock at cur point
+            int hold = t[i - 1][0] - prices[0];
+			
+			// System.out.println("i="+i+'\t'+hold);
             for (int j = 1; j < len; j++) {
-                t[i][j] = Math.max(t[i][j - 1], prices[j] + tmpMax);
-                tmpMax =  Math.max(tmpMax, t[i - 1][j - 1] - prices[j]);
-				// System.out.println("j="+j+'\t'+tmpMax);
+				//find the max with/without cur point, with = cur val - hold val
+                t[i][j] = Math.max(t[i][j - 1], prices[j] + hold);
+				//update hold, means use the last max value(k-1 tx), and buy at here 
+                hold =  Math.max(hold, t[i - 1][j - 1] - prices[j]);
+				// System.out.println("j="+j+'\t'+hold);
             }
         }
 		// for(int i=0;i<=k;i++){
@@ -31,7 +35,7 @@ public class BuyStock{
     }
 	public static void main(String args[]){
 		BuyStock bs=new BuyStock();
-		int price[]={6,1,5,3,2,4};
+		int price[]={2,1,3,6,5,7};
 		int k=2;
 		System.out.println(bs.maxProfit(k,price));
 	}

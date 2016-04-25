@@ -34,10 +34,12 @@ public class ConstructTree {
 		stack.push(root);
 		TreeNode pre=null;
 		while(j>=0 && i >= 0){
+			//root
 			if(!stack.isEmpty() && stack.peek().val==inorder[j]){
 				pre = stack.pop();
 				j--;
 			}
+			//left child
 			else if (pre!=null){
 				TreeNode t = new TreeNode(postorder[i--]);
 				pre.left=t;
@@ -45,6 +47,7 @@ public class ConstructTree {
 				stack.push(t);
 			}
 			else{
+				//right child
 				TreeNode t = new TreeNode(postorder[i--]);
 				stack.peek().right= t;
 				stack.push(t);

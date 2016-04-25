@@ -4,7 +4,7 @@ import java.util.*;
 public class Code{
     public static void main(String args[]){
         String cracker = Code.generate();
-        // System.out.println(cracker);
+        System.out.println(cracker);
 		System.out.println(cracker.length());
     }
     public static String generate(){

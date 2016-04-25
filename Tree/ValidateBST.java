@@ -1,3 +1,4 @@
+import java.util.*;
 class TreeNode {
      int val;
      TreeNode left;
@@ -24,6 +25,34 @@ public class ValidateBST{
 
 	    return true;
 	}
+	
+	public boolean isValidBST2(TreeNode root){
+		if(root==null)
+			return true;
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(root);
+		Integer min = null;
+		while(!stack.isEmpty()){
+			while(!stack.isEmpty() && stack.peek().left != null){
+				stack.push(stack.peek().left);
+			}
+			while(!stack.isEmpty() && stack.peek().right==null){
+				TreeNode cur = stack.pop();
+				if(min!=null && cur.val <= min)
+					return false;
+				else min = cur.val;
+			}
+			if(!stack.isEmpty()){
+				TreeNode cur = stack.pop();
+				if(min!=null&& cur.val <= min)
+					return false;
+				else min = cur.val;
+				stack.push(cur.right);
+			
+			}
+		}
+		return true;
+	}
 	public static void main(String args[]){
 		ValidateBST vb=new ValidateBST();
 		TreeNode root=new TreeNode(3);
@@ -38,5 +67,6 @@ public class ValidateBST{
 		root.right=t4;
 		t4.right=t3;
 		System.out.println(vb.isValidBST(root));
+		System.out.println(vb.isValidBST2(root));
 	}
 }

@@ -8,6 +8,7 @@ class Point{
 	}
 }
 public class DetectLine{
+	//Find a line to cross all the point.
 	public boolean detect(List<Point> list){
 		double xpos = 0;
 		Set<Integer> ypos = new HashSet();
@@ -22,7 +23,7 @@ public class DetectLine{
 			}
 			xpos += p.x;
 		}
-		System.out.println(xpos);
+		// System.out.println(xpos);
 		if(ypos.size()>0) return false;
 		else return true;
 	}
@@ -33,6 +34,7 @@ public class DetectLine{
 		list.add(new Point(1,2));
 		list.add(new Point(1,2));
 		list.add(new Point(1,3));
+		list.add(new Point(2,2));
 		System.out.println(dl.detect(list));
 		
 	}

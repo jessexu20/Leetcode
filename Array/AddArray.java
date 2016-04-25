@@ -31,9 +31,9 @@ public class AddArray{
 		arr[y] = temp;
 	}
 	public static void main(String args[]){
-		char [] num = {'1','2','3'};
+		char [] num = {'1','2','3','0','1'};
 		AddArray a = new AddArray();
-		char [] result = a.add(num,0);
+		char [] result = a.add(num,231);
 		for(int i =0 ;i < result.length;i++){
 			System.out.print(result[i]);
 		}

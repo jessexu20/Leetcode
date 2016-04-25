@@ -40,7 +40,7 @@ public class LongestConsecutiveSequence{
 	}
 	public static void main(String args[]){
 		LongestConsecutiveSequence lcs = new LongestConsecutiveSequence();
-		int [] nums =  {6,1,2,3,5};
+		int [] nums =  {6,1,2,3,4,5};
 		TreeNode root = new TreeNode(1);
 		TreeNode t2 = new TreeNode(2);
 		TreeNode t3 = new TreeNode(3);

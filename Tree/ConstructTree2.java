@@ -33,7 +33,8 @@ public class ConstructTree2 {
 		TreeNode root = new TreeNode (preorder[i++]);
 		stack.push(root);
 		TreeNode pre = null;
-		while(j<inorder.length){//end of left tree
+		while(j<inorder.length){
+			//end of left tree
 			if(!stack.isEmpty() && stack.peek().val== inorder[j]){
 				pre = stack.pop();
 				j++;
