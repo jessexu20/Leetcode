@@ -43,6 +43,6 @@ public class FormatWords{
 	}
 	public static void main(String args[]){
 		FormatWords fw = new FormatWords();
-		System.out.println(fw.canPlace("abc cd e xyz",12,5));
+		System.out.println(fw.canPlace("abc cd e x2asdafasz",12,5));
 	}
 }
