@@ -1,4 +1,6 @@
-import java.util.*;
+// 队 打散后,每个人有个高度,每个 记得原来之前有几个比他高 ,没有重复高度,求复原原始队列
+import java.util.*
+	
 class People{
 	String name;
 	int height;

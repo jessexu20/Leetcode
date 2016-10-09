@@ -22,7 +22,7 @@ public class RandomGen{
 		RandomGen r = new RandomGen();
 		int [] cnt = new int[6];
 		for(int i = 0; i < 10000;i++)
-			cnt[r.rand2()]++;
+			cnt[r.rand6()]++;
 			// System.out.println(r.rand7());
 		for(int i = 0; i < 6; i++){
 			System.out.print(cnt[i]+"\t");

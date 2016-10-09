@@ -23,6 +23,6 @@ public class PerfectSquares {
     }
 	public static void main(String args[]){
 		PerfectSquares s = new PerfectSquares();
-		System.out.println(s.numSquares(30));
+		System.out.println(s.numSquares(36));
 	}
 }

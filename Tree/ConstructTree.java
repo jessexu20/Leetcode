@@ -59,9 +59,9 @@ public class ConstructTree {
 
 	public static void main(String args[]) {
 		ConstructTree cons = new ConstructTree();
-		int[] inorder = { 4, 2, 8, 5, 9, 1, 6, 3 ,7 };
-		int[] postorder = { 4, 8, 9, 5, 2, 6, 7, 3 ,1};
-		TreeNode tree = cons.constructTree(inorder, postorder);
+		int[] inorder = {5,2,9,6,1,7,4,8};
+		int[] postorder = { 5,9,6,2,7,8,4,1};
+		TreeNode tree = cons.constructTree(postorder,inorder );
 		cons.inOrder(tree);
 		System.out.println();
 		cons.postOrder(tree);

@@ -35,7 +35,7 @@ class Point{
 public class ShortestDistanceAllBuildings{
 	public int shortestDistance(int [][] grid){
 		int [][] dist = new int [grid.length][grid[0].length];
-		int value = 0;
+		int value = 0;//value of the number of 1s 
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if(grid[i][j]==1){
@@ -45,9 +45,9 @@ public class ShortestDistanceAllBuildings{
 					while(!que.isEmpty()){
 						Point cur = que.poll();
 						int [] pos = {1,-1,0,0};
-						for(int k = 0; k < pos.length; k++){
+						for(int k = 0; k < 4; k++){
 							int nextX = cur.x + pos[k];
-							int nextY = cur.y + pos[pos.length-1-k];
+							int nextY = cur.y + pos[3-k];
 							if(nextX >=0 && nextY>=0 && nextX < grid.length && nextY < grid[0].length && grid[nextX][nextY] == value){
 								grid[nextX][nextY]--;
 								temp[nextX][nextY] = temp[cur.x][cur.y]+1;

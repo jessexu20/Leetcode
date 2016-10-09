@@ -48,7 +48,7 @@ public class ConstructTree2 {
 			else{//left child
 				TreeNode l = new TreeNode(preorder[i++]);
 				stack.peek().left= l;
-				stack.push(t);
+				stack.push(l);
 			}
 		}
 		return root;

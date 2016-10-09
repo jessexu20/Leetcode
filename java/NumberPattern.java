@@ -14,7 +14,7 @@ public class NumberPattern {
 			if (order[i] == 'd')
 				len++;
 			if (order[i] == 'i' && len != 0) {
-				reverse(nums, i-len, i);
+				reverse(nums, i-len, i);//reverse the length of ds
 				len = 0;
 			}
 		}

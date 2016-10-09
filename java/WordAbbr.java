@@ -43,7 +43,7 @@ public class WordAbbr {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		WordAbbr wordAbbr = new WordAbbr();
-		System.out.println(wordAbbr.transfer("a"));
+		System.out.println(wordAbbr.transfer("abc"));
 		// System.out.println(wordAbbr.transfer("abcd"));
 	}
 }
